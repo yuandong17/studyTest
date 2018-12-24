@@ -10,11 +10,15 @@ var usersRouter = require('./routes/users');
 var entries = require('./routes/entries');
 const register = require('./routes/register');
 const login = require('./routes/login');
+const api = require('./routes/api');
+
 
 const validate = require('./middleware/validate');
 const messages = require('./middleware/messages');
 const user = require('./middleware/user');
 
+
+const Entry = require('./models/entry');
 
 
 var app = express();
@@ -34,10 +38,14 @@ app.use(session({
   resave:false,
   saveUninitialized:true
 }));
-
+app.use('/api', api.auth);
 app.use(user);
 
 app.use(messages);
+
+app.get('/api/user/:id', api.user);
+app.post('/api/entry', entries.submit);
+app.get('/api/entries/:page?', page(Entry.count), api.entries);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
