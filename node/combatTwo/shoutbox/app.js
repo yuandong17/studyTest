@@ -16,7 +16,7 @@ const api = require('./routes/api');
 const validate = require('./middleware/validate');
 const messages = require('./middleware/messages');
 const user = require('./middleware/user');
-
+const page = require('./middleware/page');
 
 const Entry = require('./models/entry');
 
@@ -45,7 +45,7 @@ app.use(messages);
 
 app.get('/api/user/:id', api.user);
 app.post('/api/entry', entries.submit);
-app.get('/api/entries/:page?', page(Entry.count), api.entries);
+app.get('/api/entries/:page?', page(Entry.count,3), api.entries);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

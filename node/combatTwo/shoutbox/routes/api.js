@@ -25,7 +25,7 @@ exports.user = (req, res, next)=>{
 
         res.json(user);
     })
-}
+};
 
 exports.entries = (req, res, next)=>{
     const page = req.page;
@@ -33,4 +33,4 @@ exports.entries = (req, res, next)=>{
         if(err) return next(err);
         res.json(entries);
     })
-}
+};

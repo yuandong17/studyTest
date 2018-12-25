@@ -1,10 +1,14 @@
 module.exports = (cb, perpage)=>{
+
+
+
     perpage = perpage || 10;
 
     return (req, res, next) =>{
-        let page = Math.max(parseInt(req.params.page || '1'), 10) -1;
+        let page = Math.max(parseInt(req.params.page || '1', 10),1) -1;
+        console.log(new Date().toLocaleString(), cb);
 
-        cb((err, total)=>{
+        cb && cb((err, total)=>{
             if(err) return next(err);
             req.page = res.locals.page = {
                 number:page,

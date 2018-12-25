@@ -28,6 +28,16 @@ class Entry {
         });
     }
 
+
+    static count(cb){
+        db.llen('entries', (err, total)=>{
+
+            console.log(new Date().toLocaleString(), 'liu', err, total);
+
+            cb(err, total);
+        });
+    }
+
 }
 
 module.exports = Entry;
