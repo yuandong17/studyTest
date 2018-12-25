@@ -45,7 +45,8 @@ app.use(messages);
 
 app.get('/api/user/:id', api.user);
 app.post('/api/entry', entries.submit);
-app.get('/api/entries/:page?', page(Entry.count,3), api.entries);
+// app.get('/api/entries/:page?', page(1), api.entries);
+app.get('/api/entries/:page?', page(Entry.count, 1), api.entries);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
